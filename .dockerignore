@@ -1,0 +1,8 @@
+Dockerfile
+node_modules/
+.git
+.gitignore
+.DS_Store
+.env
+vendor/
+storage/logs/laravel.log

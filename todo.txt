@@ -1,0 +1,9 @@
+# How to run
+
+- 
+
+# How to make
+
+- git clone git@github.com:joselfonseca/laravel-api.git
+- composer update
+- do the .env shit and key
