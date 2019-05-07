@@ -1,7 +1,6 @@
 import role from './role'
 import user from './user'
 import admin from './admin'
-import consultant from './consultant'
 
 export default {
   path: '/users',
@@ -14,7 +13,6 @@ export default {
   children: [
     ...role,
     ...user,
-    ...admin,
-    ...consultant
+    ...admin
   ]
 }

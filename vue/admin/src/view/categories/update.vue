@@ -2,12 +2,9 @@
   import _ from 'lodash'
   import api from 'src/packages/Api'  
 
-  import Tabs from './tabs'
   import Loading from 'partials/Loading'
   import Editor from 'view/components/editor'
   import Uploader from 'view/components/uploader'
-  import Relateds from 'view/components/relateds'
-  import References from 'view/components/references'
   import Multiselect from 'view/components/multiselect'
   import MultiTagselect from 'view/components/multitagselect'
   
@@ -30,22 +27,12 @@
         
         parent: {},
         categories: [],
-        references: [],
-
-        related: [],
 
         tag: [],
         tags: [],
 
         writer: {},
-        writer2: {},
         writers: [],
-
-        type: {},
-        types: [
-          { id: 'default', name: this.$t('category.type_default')},
-          { id: 'tabbed', name: this.$t('category.type_tabbed')}
-        ],
 
         tabs: [],
         showTabs: true,
@@ -57,12 +44,9 @@
       }
     },
     components: {
-      Tabs,
       Editor,
       Loading,
       Uploader,
-      Relateds,
-      References,
       Multiselect,
       MultiTagselect
     },
@@ -81,31 +65,12 @@
         this.link = res.link
         this.keywords = res.keywords
         this.description = res.description        
-        this.references = res.references.data        
         this.parent = res.parent_id ? res.parent.data : {}
         this.type = this.types.find(t => t.id === res.type)
 
         if (res.writer_id) {
           this.writer = res.writer.data          
         }
-
-        if (res.writer_id_2) {
-          this.writer2 = res.writer2.data          
-        }
-
-        const related = await api.post('related', res.related.data)
-
-        this.related = related.data.map(r => {
-          const selector = r.type === 'categories' ? 'name' : 'title'
-
-          const rel = {
-            selector,
-            id: r.entity,
-            type: {id: r.type, name: this.$t(`related.type_${r.type}`)}
-          }
-
-          return rel
-        })
 
         this.writers = writers.data
         
@@ -166,18 +131,6 @@
         }        
       },
 
-      selectWriter2 (writer) {
-        if (writer !== undefined) {
-          this.writer2 = writer
-        }        
-      },
-
-      selectType (type) {
-        if (type !== undefined) {
-          this.type = type
-        }        
-      },
-
       findTag (result) {
         const tags = result.map(tag => { return { id: tag.name, name: tag.name } })
 
@@ -193,39 +146,6 @@
 
         this.editor.setContents(this.category.content || '')
       },
-      
-      deleteRef (reff) {
-        this.references = this.references.filter(r => r !== reff)
-      },
-
-      deleteRelated (rel) {
-        this.related = this.related.filter(r => r !== rel)
-      },
-
-      addTab () {
-        const tab = {
-          id: null,
-          key: '',
-          sort: 1,
-          title: '',
-          content: ''
-        }
-
-        this.tabs.push(tab)
-      },
-
-      updateTab (tabs) {
-        const self = this
-        this.showTabs = false
-
-        this.tabs = tabs
-        
-        setTimeout(() => self.showTabs = true, 1000)
-      },
-
-      deleteTab (tab) {
-        this.tabs = this.tabs.filter(t => t !== tab)
-      },
 
       updateTagImages (tab) {
         const tabs = this.tabs
@@ -240,30 +160,10 @@
         })
       },
 
-      changeRelated ({old, changed}) {
-        const relates = this.related.map(r => {
-          if (r === old) {
-            return changed
-          } else {
-            return r
-          }
-        })
-
-        this.related = relates
-      },
-
       update () {
 
         this.$validator.validateAll().then((result) => {
           const tags = this.tag.map(t => t.name)
-          const relations = this.related
-            .filter(r => !_.isEmpty(r.id))
-            .map(r => {
-              return {
-                type: r.type.id,
-                related_id: r.id.id
-              }
-            })
 
           if (result) {
             const data = {
@@ -272,14 +172,10 @@
               menu: this.menu ? 1 : 0,
               parent_id: _.isEmpty(this.parent) ? 0 : this.parent.id,
               writer_id: _.isEmpty(this.writer) ? null : this.writer.identifier,
-              writer_id_2: _.isEmpty(this.writer2) ? null : this.writer2.identifier,
-              type: this.type.id,
               link: this.link,
               keywords: this.keywords,
               description: this.description,
               content: this.editor.getContents(),
-              references: this.references,
-              related: relations,
               tags
             }
 
@@ -492,20 +388,6 @@
               <div class="row mt-2">
                 <Editor @editor="handleEditor"/>
               </div>
-
-              <references :references="references" @delRef="deleteRef"/>
-
-              <relateds :relateds="related" @delRel="deleteRelated" @changeRel="changeRelated"/>
-
-              <tabs 
-                v-if="type.id === 'tabbed' && showTabs" 
-                :tabs="tabs" 
-                @delTab="deleteTab" 
-                @addTab="addTab"
-                @update="updateTab"
-                :category_id="category.id"
-                @updateImages="updateTagImages"
-              />
 
               <div class="row mt-5">
                 <div class="col justify-content-center text-center">

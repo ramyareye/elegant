@@ -22,7 +22,6 @@
     },
     components: {
       Editor,
-      Reference,
       dataInput,
       bodyWidget,
       Multiselect    
