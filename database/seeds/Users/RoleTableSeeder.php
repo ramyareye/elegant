@@ -12,10 +12,28 @@ class RoleTableSeeder extends Seeder
     public function run()
     {
         factory(\App\Entities\Role::class)->create([
-            'name' => 'Guest'
+            'name' => 'Admin',
+            'guard_name' => 'api'
         ]);
+
         factory(\App\Entities\Role::class)->create([
-            'name' => 'Member'
+            'name' => 'Moderator',
+            'guard_name' => 'api'
+        ]);
+
+        factory(\App\Entities\Role::class)->create([
+            'name' => 'Support',
+            'guard_name' => 'api'
+        ]);
+
+        factory(\App\Entities\Role::class)->create([
+            'name' => 'Manager',
+            'guard_name' => 'api'
+        ]);
+
+        factory(\App\Entities\Role::class)->create([
+            'name' => 'User',
+            'guard_name' => 'api'
         ]);
     }
 }

@@ -6,7 +6,7 @@ use App\Entities\User;
 use Illuminate\Http\Request;
 use Dingo\Api\Routing\Helpers;
 use App\Http\Controllers\Controller;
-use App\Transformers\Users\UserTransformer;
+use App\Transformers\Api\Users\UserTransformer;
 
 /**
  * Class UsersController.
@@ -30,11 +30,12 @@ class UsersController extends Controller
     public function __construct(User $model)
     {
         $this->model = $model;
-        $this->middleware('permission:List users')->only('index');
-        $this->middleware('permission:List users')->only('show');
-        $this->middleware('permission:Create users')->only('store');
-        $this->middleware('permission:Update users')->only('update');
-        $this->middleware('permission:Delete users')->only('destroy');
+        $this->users = $model->users();
+        $this->middleware('permission:list-users')->only('index');
+        $this->middleware('permission:list-users')->only('show');
+        $this->middleware('permission:create-users')->only('store');
+        $this->middleware('permission:update-users')->only('update');
+        $this->middleware('permission:delete-users')->only('destroy');
     }
 
     /**
@@ -45,9 +46,27 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        $paginator = $this->model->with('roles.permissions')->paginate($request->get('limit', config('app.pagination_limit')));
-        if ($request->has('limit')) {
-            $paginator->appends('limit', $request->get('limit'));
+        $paginator = $this->users->with('roles.permissions');
+
+        if (request()->has('sort') && request()->sort !== null) {
+            list($sortCol, $sortDir) = explode('|', request()->sort);
+            $paginator = $paginator->orderBy($sortCol, $sortDir);
+        } else {
+            $paginator = $paginator->orderBy('id', 'desc');
+        }
+
+        if ($request->exists('filter')) {
+            $paginator->where(function($q) use($request) {
+                $value = "%{$request->filter}%";
+                $q->where('name', 'like', $value)
+                    ->orWhere('email', 'like', $value);
+            });
+        }
+
+        $paginator = $paginator->paginate($request->get('per_page', config('app.pagination_limit')));
+        
+        if ($request->has('per_page')) {
+            $paginator->appends('limit', $request->get('per_page'));
         }
 
         return $this->response->paginator($paginator, new UserTransformer());
@@ -59,8 +78,16 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = $this->model->with('roles.permissions')->byUuid($id)->firstOrFail();
+        $user = $this->users->with('roles.permissions')->byUuid($id)->firstOrFail();
 
+        return $this->response->item($user, new UserTransformer());
+    }
+
+    public function showByEmail($email)
+    {
+        $user = $this->model->where('email', $email)
+                    ->with('roles.permissions')->firstOrFail();
+                    
         return $this->response->item($user, new UserTransformer());
     }
 
@@ -75,7 +102,9 @@ class UsersController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed',
         ]);
-        $user = $this->model->create($request->all());
+
+        $user = $this->users->create($request->all());
+
         if ($request->has('roles')) {
             $user->syncRoles($request['roles']);
         }
@@ -90,7 +119,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $uuid)
     {
-        $user = $this->model->byUuid($uuid)->firstOrFail();
+        $user = $this->users->byUuid($uuid)->firstOrFail();
         $rules = [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$user->id,
@@ -118,9 +147,22 @@ class UsersController extends Controller
      */
     public function destroy(Request $request, $uuid)
     {
-        $user = $this->model->byUuid($uuid)->firstOrFail();
+        $user = $this->users->byUuid($uuid)->firstOrFail();
         $user->delete();
 
         return $this->response->noContent();
+    }
+
+    public function search(Request $request)
+    {
+      $keyword = '%' . $request->keyword . '%';
+
+      $users = $this->users->where('name', 'LIKE', $keyword)
+                            ->orWhere('family', 'LIKE', $keyword)
+                            ->orWhere('email', 'LIKE', $keyword)
+                            ->limit(10)
+                            ->get();
+
+      return $this->response->collection($users, new UserTransformer());
     }
 }

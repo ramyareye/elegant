@@ -6,7 +6,7 @@ use App\Entities\Permission;
 use Illuminate\Http\Request;
 use Dingo\Api\Routing\Helpers;
 use App\Http\Controllers\Controller;
-use App\Transformers\Users\PermissionTransformer;
+use App\Transformers\Api\Users\PermissionTransformer;
 
 /**
  * Class PermissionsController.
@@ -28,7 +28,7 @@ class PermissionsController extends Controller
     public function __construct(Permission $model)
     {
         $this->model = $model;
-        $this->middleware('permission:List permissions')->only('index');
+        // $this->middleware('permission:List permissions')->only('index');
     }
 
     /**
@@ -37,7 +37,7 @@ class PermissionsController extends Controller
      */
     public function index(Request $request)
     {
-        $paginator = $this->model->paginate($request->get('limit', config('app.pagination_limit')));
+        $paginator = $this->model->paginate(500);
         if ($request->has('limit')) {
             $paginator->appends('limit', $request->get('limit'));
         }

@@ -1,0 +1,258 @@
+{
+  "project": "Yara",
+  "app": {
+    "create": "افزودن",
+    "created": "افزوده شد",
+    "update": "ویرایش",
+    "updated": "ویرایش شد"
+  },
+  "menu": {
+    "dashboard": "داشبورد",
+    "file-manager": "مدیریت فایل‌ها",
+    "users": {
+      "user": "کاربر",
+      "users": "کاربران",
+      "create": "افزودن کاربر",
+      "update": "ویرایش کاربر"
+    },
+    "files": {
+      "files": "مدیریت فایل"
+    },
+    "admins": {
+      "admin": "مدیر سیستم",
+      "admins": "مدیران سیستم",
+      "create": "افزودن مدیر سیستم",
+      "update": "ویرایش مدیر سیستم"
+    },
+    "roles": {
+      "role": "نقش",
+      "roles": "نقش‌ها",
+      "create": "افزودن نقش",
+      "update": "ویرایش نقش"
+    },
+
+    "posts": {
+      "post": "نوشته",
+      "posts": "نوشته‌ها",
+      "create": "افزودن نوشته",
+      "update": "ویرایش نوشته"
+    },
+
+    "categories": {
+      "category": "دسته‌بندی",
+      "categories": "دسته‌بندی‌ها",
+      "create": "افزودن دسته‌بندی",
+      "update": "ویرایش دسته‌بندی"
+    },
+
+    "pages": {
+      "page": "صفحه",
+      "pages": "صفحه‌ها",
+      "create": "افزودن صفحه",
+      "update": "ویرایش صفحه"
+    },
+
+    "slides": {
+      "slide": "اسلاید",
+      "slides": "اسلایدها",
+      "create": "افزودن اسلاید",
+      "update": "ویرایش اسلاید"
+    }
+  },
+  "auth": {
+    "agree": "موافقم با",
+    "alreadyJoined": "قبلا ثبت‌نام کرده‌اید؟",
+    "createAccount": "افزودن اکانت",
+    "createNewAccount": "ثبت‌نام",
+    "email": "ایمیل",
+    "login": "ورود",
+    "password": "رمزعبور",
+    "signUp": "ثبت نام",
+    "welcome": "خوش‌آمدید!",
+    "logout": "خروج"
+  },
+  "breadcrumbs": {
+    "home": "خانه"
+  },
+  "modal": {
+    "cancel": "انصراف",
+    "close": "بستن",
+    "confirm": "تایید"
+  },
+  "file": {
+    "upload": "افزودن فایل",
+    "big": "حداکثر حجم عکس ۲ مگابال!"
+  },
+  
+  "user": {
+    "users": "کاربران",
+    "profile": "پروفایل",
+    "name": "نام",
+    "family": "نام خانوادگی",
+    "bio": "درباره",
+    "gender": "جنسیت",
+    "gender_m": "مرد",
+    "gender_f": "زن",
+    "birthdate": "تاریخ تولد",
+    "email": "ایمیل",
+    "mobile": "موبایل",
+    "password": "رمز عبور",
+    "password_confirmation": "تاییدیه رمز عبور",
+    "active": "وضعیت",
+    "active_y": "فعال",
+    "active_n": "غیر فعال",
+    "upload_avatar": "افزودن آواتار",
+    "upload_cover": "افزودن کاور",
+    "created": "کاربر افزوده شد",
+    "updated": "کاربر ویرایش شد"
+  },
+  "admin": {
+    "created": "مدیر سیستم افزوده شد",
+    "updated": "مدیر سیستم ویرایش شد"
+  },
+  "role": {
+    "name": "نام",
+    "permissions": "دسترسی‌ها",
+    "created": "نقش افزوده شد",
+    "updated": "نقش ویرایش شد"
+  },
+  "post": {
+    "title": "عنوان",
+    "slug": "آدرس",
+    "excerpt": "خلاصه",
+    "body": "محتوا",
+    "image": "تصویر",
+    "cover": "کاور",
+    "visible": "نمایش",
+    "categories": "دسته‌بندی‌ها",
+    "tags": "برچسب‌ها",
+    "visible": "فعال",
+    "visible_yes": "فعال",
+    "visible_no": "غیرفعال",
+    "created": "نوشته افزوده شد",
+    "updated": "نوشته ویرایش شد"    
+  },
+  "category": {
+    "name": "عنوان",
+    "slug": "آدرس",
+    "keywords": "کلمات کلیدی",
+    "description": "توضیحات",
+    "link": "لینک",
+    "image": "تصویر",
+    "cover": "کاور",
+    "images": "گالری",
+    "content": "گالری",
+    "published_at": "منتشر شده در",
+    "created": "دسته‌بندی افزوده شد",
+    "updated": "دسته‌بندی ویرایش شد"
+  },
+  
+  "page": {
+    "title": "عنوان",
+    "slug": "آدرس",
+    "excerpt": "خلاصه",
+    "body": "محتوا",
+    "image": "تصویر",
+    "cover": "کاور",
+    "parent": "مادر",
+    "children": "فرزند",
+    "children_no": "ندارد",
+    "children_yes": "فرزند",
+    "visible": "نمایش",
+    "visible_yes": "فعال",
+    "visible_no": "غیرفعال",  
+    "created": "صفحه افزوده شد",
+    "updated": "صفحه ویرایش شد"
+  },
+
+  "slide": {
+    "title": "عنوان",
+    "content": "محتوا",
+    "url": "لینک",
+    "order": "ترتیب",
+    "site": "مکان نمایش",
+    "site_no": "بلاگ",
+    "site_yes": "سایت",
+    "image": "تصویر",
+    "mobile": "تصویر موبایل",
+    "created": "اسلاید افزوده شد",
+    "updated": "اسلاید ویرایش شد"
+  },
+  
+  "buttons": {
+    "submit": "افزودن",
+    "add": "افزودن",
+    "update": "ویرایش",
+    "cancel": "بیخیال!",
+    "back": "بازگشت",
+    "send": "ارسال"
+  },
+
+  "errors": {
+    "400": "درخواست غیر مجاز!",
+    "401": "لطفا دوباره وارد شوید!",
+    "403": "شما اجازه دسترسی ندارید!",
+    "422": "اطلاعات نامعتبر",
+    "404": "یافت نشد",
+    "500": "خطای ۵۰۰!",
+    "any": "مشکل در افزودن اطلاعات",
+    "state": "لطفا استان و شهر را انتخاب کنید",
+    "type": "لطفا نوع را انتخاب کنید",
+    "category": "لطفا دسته‌بندی را انتخاب کنید"
+  },
+
+  "dashboard": {
+    "users": {
+      "name": "نام"
+    }
+  },
+  "vuetable": {
+    "search": "جستجو",
+    "perpage": "در هر صفحه",
+    "actions": "عملیات",
+    "created_at": "تاریخ ثبت",
+    "updated_at": "تاریخ ویرایش"
+  },
+
+  "alert": {
+    "danger": "خطا",
+    "confirm": "باشع",
+    "cancel": "بیخیال",
+    "sure": "مطمئنید ؟",
+    "sure_text": "امکان بازیابی این عمل وجود ندارد!"
+  },
+
+  "uploader": {
+    "copy": "کپی",
+    "open": "باز بنمای",
+    "close": "بستن",
+    "delete": "حذف",
+    "deleted": "حذف شد",
+    "deleted_text": "با موفقیت حذف شد!",
+    "thumb": "آیکون",
+    "small": "کوچک",
+    "medium": "متوسط",
+    "large": "بزرگ",
+    "main": "اصلی"
+  },
+
+  "sidebar": {
+    "label": "ستون کناری",
+    "disable": "غیر فعال",
+    "default": "اصلی 1",
+    "default": "اصلی 2",
+    "default": "اصلی 3"
+  },
+
+  "custom": {
+    "yes": "بله",
+    "no": "نه",
+    "active": "فعال",
+    "inactive": "غیر فعال",
+    "parent": "مادر",
+    "no_parent": "بدون مادر",
+    "not_found": "یافت نشد!",
+    "placeholder": "نگه دارنده",
+    "message_placeholder": "پیام"
+  }
+}

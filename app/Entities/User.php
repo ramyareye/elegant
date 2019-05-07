@@ -10,14 +10,27 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+
 /**
  * Class User.
  */
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
     use Notifiable, UuidScopeTrait, HasApiTokens, HasRoles, SoftDeletes, HasRolesUuid {
         HasRolesUuid::getStoredRole insteadof HasRoles;
     }
+
+    protected $table = 'users';
+    protected $guard_name = 'api';
+
+    protected $casts = [
+        'birthdate' => 'datetime'
+    ];
+
+    use HasMediaTrait;
 
     /**
      * The attributes that should be mutated to dates.
@@ -25,6 +38,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $dates = [
+        'birthdate',
         'deleted_at',
     ];
 
@@ -34,10 +48,34 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
         'uuid',
-        'email',
+        'name',
         'password',
+        'family',
+        'description',
+        'username',
+        'email',
+        'email_verified',
+        'mobile',
+        'is_mobile_verified',
+        'is_charity',
+        'avatar_id',
+        'birthdate',
+        'gender',
+        'instagram',
+        'facebook',
+        'twitter',
+        'twitter website',
+        'phone',
+        'fax',
+        'location_id',
+        'state_id',
+        'city_id',
+        'address',
+        'last_login',
+        'activated_at',
+        'status',
+        'active'
     ];
 
     /**
@@ -63,5 +101,89 @@ class User extends Authenticatable
         $model = static::query()->create($attributes);
 
         return $model;
+    }
+
+    public function scopeAdmins($query)
+    {
+        return $query->whereHas('roles', function ($q) {
+          $q->where('name', 'Admin');
+        });
+    }
+
+    public function scopeModerators($query)
+    {
+        return $query->whereHas('roles', function ($q) {
+          $q->where('name', 'Moderator');
+        });
+    }
+
+    public function scopeSupports($query)
+    {
+        return $query->whereHas('roles', function ($q) {
+          $q->where('name', 'Support');
+        });
+    }
+
+    public function scopeManagers($query)
+    {
+        return $query->whereHas('roles', function ($q) {
+          $q->where('name', 'Managers');
+        });
+    }
+
+    public function scopeUsers($query)
+    {
+        return $query->whereHas('roles', function ($q) {
+          $q->where('name', 'Users');
+        });
+    }
+
+    public function categories()
+    {
+      return $this->hasMany('App\Entities\Category', 'writer_id');
+    }
+
+    public function posts()
+    {
+      return $this->hasMany('App\Entities\Post', 'writer_id');
+    }
+
+    public function comments()
+    {
+      return $this->hasMany('App\Entities\Comment', 'writer_id');
+    }
+  
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('thumb')
+            ->width(64)
+            ->height(64);
+
+        $this->addMediaConversion('small')
+            ->width(150)
+            ->height(150);
+
+        $this->addMediaConversion('medium')
+            ->width(300)
+            ->height(300);
+
+        $this->addMediaConversion('large')
+            ->width(800)
+            ->height(800);
+    }
+
+    public function avatar()
+    {
+        return $this->morphOne(Media::class, 'model');
+    }
+
+    public function followers()
+    {
+      return $this->hasMany(User::class);
+    }
+
+    public function followings()
+    {
+      return $this->hasMany(User::class);
     }
 }

@@ -63,6 +63,34 @@ return [
             'bucket' => env('AWS_BUCKET'),
         ],
 
+        'media' => [
+            'driver' => 'local',
+            'root'   => public_path().'/media',
+            'url' => env('APP_URL') . '/media',
+            'visibility' => 'public',
+        ],
+
+        'testimonial' => [
+            'driver' => 'local',
+            'root'   => storage_path('app/public/testimonial'),
+            'url' => env('APP_URL') . '/storage/testimonial',
+            'visibility' => 'public',
+        ],
+
+        'careers' => [
+            'driver' => 'local',
+            'root'   => storage_path('app/public/careers'),
+            'url' => env('APP_URL') . '/storage/careers',
+            'visibility' => 'public',
+        ],
+
+        'profile' => [
+            'driver' => 'local',
+            'root'   => storage_path('app/public/profile'),
+            'url' => env('APP_URL') . '/storage/profile',
+            'visibility' => 'public',
+        ]        
+
     ],
 
 ];

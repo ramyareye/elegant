@@ -6,7 +6,7 @@ use App\Entities\Role;
 use Illuminate\Http\Request;
 use Dingo\Api\Routing\Helpers;
 use App\Http\Controllers\Controller;
-use App\Transformers\Users\RoleTransformer;
+use App\Transformers\Api\Users\RoleTransformer;
 
 /**
  * Class RolesController.
@@ -28,11 +28,11 @@ class RolesController extends Controller
     public function __construct(Role $model)
     {
         $this->model = $model;
-        $this->middleware('permission:List roles')->only('index');
-        $this->middleware('permission:List roles')->only('show');
-        $this->middleware('permission:Create roles')->only('store');
-        $this->middleware('permission:Update roles')->only('update');
-        $this->middleware('permission:Delete roles')->only('destroy');
+        $this->middleware('permission:list-roles')->only('index');
+        $this->middleware('permission:list-roles')->only('show');
+        // $this->middleware('permission:update-roles')->only('store');
+        // $this->middleware('permission:update-roles')->only('update');
+        // $this->middleware('permission:Delete roles')->only('destroy');
     }
 
     /**
@@ -68,11 +68,10 @@ class RolesController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'permissions' => 'required'
         ]);
         $role = $this->model->create($request->all());
-        if ($request->has('permissions')) {
-            $role->syncPermissions($request['permissions']);
-        }
+        $role->syncPermissions($request['permissions']);
 
         return $this->response->created(url('api/roles/'.$role->uuid));
     }
@@ -86,13 +85,12 @@ class RolesController extends Controller
     {
         $role = $this->model->byUuid($uuid)->firstOrFail();
         $this->validate($request, [
-            'name' => 'required',
+            // 'name' => 'required',
+            'permissions' => 'required'
         ]);
-        $role->update($request->except('_token'));
-        if ($request->has('permissions')) {
-            $role->syncPermissions($request['permissions']);
-        }
-
+        // $role->update($request->except('_token'));
+        $role->syncPermissions($request['permissions']);
+    
         return $this->response->item($role->fresh(), new RoleTransformer());
     }
 
@@ -101,11 +99,11 @@ class RolesController extends Controller
      * @param $uuid
      * @return mixed
      */
-    public function destroy(Request $request, $uuid)
-    {
-        $role = $this->model->byUuid($uuid)->firstOrFail();
-        $role->delete();
+    // public function destroy(Request $request, $uuid)
+    // {
+    //     $role = $this->model->byUuid($uuid)->firstOrFail();
+    //     $role->delete();
 
-        return $this->response->noContent();
-    }
+    //     return $this->response->noContent();
+    // }
 }

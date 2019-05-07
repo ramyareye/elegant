@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0c86c1"],{"558c":function(n,e,c){"use strict";c.r(e);var t=function(){var n=this,e=n.$createElement,c=n._self._c||e;return c("div",[n._v("\n  Change\n")])},s=[],a={name:"changePassword"},u=a,l=c("2877"),o=Object(l["a"])(u,t,s,!1,null,null,null);o.options.__file="rest.vue";e["default"]=o.exports}}]);
+//# sourceMappingURL=chunk-2d0c86c1.9e087428.js.map

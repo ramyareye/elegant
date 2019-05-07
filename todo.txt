@@ -7,3 +7,26 @@
 - git clone git@github.com:joselfonseca/laravel-api.git
 - composer update
 - do the .env shit and key
+
+# Practives
+- https://github.com/tower1229/Vue-Access-Control 
+- https://github.com/wemake-services/wemake-vue-template
+- https://github.com/imanghafoori1/laravel-widgetize?ref=madewithlaravel.com
+- https://github.com/phanan/koel
+- https://github.com/zaiste/huncwot
+- https://github.com/scottbedard/oc-vuetober-theme
+- https://github.com/mrellipse/toucan
+
+# Utils
+- https://github.com/mailhog/MailHog
+- https://portainer.io
+- https://www.froala.com/wysiwyg-editor
+
+# Development
+- https://github.com/typicode/hotel
+- https://github.com/jcc/blog
+
+# UI
+- https://zircleui.github.io/docs/examples/home.html
+- https://github.com/substance/substance
+- https://github.com/nhnent/tui.editor

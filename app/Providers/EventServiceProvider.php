@@ -13,7 +13,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-
+        'Dingo\Api\Event\ResponseWasMorphed' => [
+            'App\Listeners\AddFixPaginationWrapToResponse'
+        ]
     ];
 
     /**
@@ -25,5 +27,15 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
         //
+    }
+
+    /**
+     * "ctf0/package-changelog".
+     */
+    public static function postAutoloadDump(\Composer\Script\Event $event)
+    {
+        if (class_exists('ctf0\PackageChangeLog\Ops')) {
+            return \ctf0\PackageChangeLog\Ops::postAutoloadDump($event);
+        }
     }
 }
