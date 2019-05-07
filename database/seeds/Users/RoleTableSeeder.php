@@ -17,21 +17,6 @@ class RoleTableSeeder extends Seeder
         ]);
 
         factory(\App\Entities\Role::class)->create([
-            'name' => 'Moderator',
-            'guard_name' => 'api'
-        ]);
-
-        factory(\App\Entities\Role::class)->create([
-            'name' => 'Support',
-            'guard_name' => 'api'
-        ]);
-
-        factory(\App\Entities\Role::class)->create([
-            'name' => 'Manager',
-            'guard_name' => 'api'
-        ]);
-
-        factory(\App\Entities\Role::class)->create([
             'name' => 'User',
             'guard_name' => 'api'
         ]);

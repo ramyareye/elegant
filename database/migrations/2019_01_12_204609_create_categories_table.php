@@ -17,7 +17,6 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('old_id')->unsigned()->nullable();
             $table->uuid('uuid')->index()->unique();
 
             $table->string('name');
@@ -26,7 +25,6 @@ class CreateCategoriesTable extends Migration
             $table->text('keywords')->nullable();
             $table->text('description')->nullable();
             $table->longText('content')->nullable();
-            $table->boolean('menu')->default(false);
             $table->boolean('visible')->default(true);
             $table->date('published_at')->nullable();
             

@@ -38,11 +38,6 @@ class PermissionTableSeeder extends Seeder
             'update-supports',
             'delete-supports',
 
-            'list-managers',
-            'create-managers',
-            'update-managers',
-            'delete-managers',
-
             'list-categories',
             'create-categories',
             'update-categories',
@@ -53,50 +48,10 @@ class PermissionTableSeeder extends Seeder
             'update-posts',
             'delete-posts',
 
-            'list-comments',
-            'create-comments',
-            'update-comments',
-            'delete-comments',
-
             'list-pages',
             'create-pages',
             'update-pages',
-            'delete-pages',
-
-            'list-profiles',
-            'create-profiles',
-            'update-profiles',
-            'delete-profiles',
-
-            'list-slides',
-            'create-slides',
-            'update-slides',
-            'delete-slides',
-
-            'list-campaigns',
-            'create-campaigns',
-            'update-campaigns',
-            'delete-campaigns',
-
-            'list-groups',
-            'create-groups',
-            'update-groups',
-            'delete-groups',
-
-            'list-locations',
-            'create-locations',
-            'update-locations',
-            'delete-locations',
-
-            'list-updates',
-            'create-updates',
-            'update-updates',
-            'delete-updates',
-
-            'list-donations',
-            'create-donations',
-            'update-donations',
-            'delete-donations'
+            'delete-pages'
     	];
 
     	foreach ($permissions as $permission) {
