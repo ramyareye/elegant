@@ -1,5 +1,7 @@
 <?php
 
+use \App\Entities\User;
+
 use Illuminate\Database\Seeder;
 
 class RoleTableSeeder extends Seeder
@@ -20,5 +22,15 @@ class RoleTableSeeder extends Seeder
             'name' => 'User',
             'guard_name' => 'api'
         ]);
+
+        factory(\App\Entities\User::class)->create([
+            'name' => 'Some User',
+            'email' => 'user@site.com',
+            'password' => bcrypt('secrets')
+        ]);
+
+        $user = User::where('email', 'user@site.com')->first();
+
+        $user->assignRole('Admin');
     }
 }

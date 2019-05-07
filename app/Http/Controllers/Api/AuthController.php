@@ -61,7 +61,7 @@ class AuthController extends Controller
         'status' => 422
       ], 422);
     }
-    
+
     // Send an internal API request to get an access token
     $data = [
       'grant_type' => 'password',

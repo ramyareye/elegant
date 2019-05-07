@@ -44,6 +44,9 @@ PASSPORT=later
 php artisan migrate --seed
 php artisan passport:install --force
 update .env PASSPORT with (Laravel API Password Grant Client)
+php artisan optimize
+php artisan route:cache
+php artisan api:cache
 ```
 
 ```bash
@@ -62,3 +65,8 @@ INDEX_PATH=backend
 ```bash
 yarn serve
 ```
+
+```bash
+yarn build
+```
+here goes to ./public/vuestic (which comes from .env on ./vue/admin) for now you should copy ./public/vuestic/vuestic ro ./public/vuestic

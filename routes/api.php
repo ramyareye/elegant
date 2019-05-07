@@ -115,21 +115,6 @@ $api->version('v1', function($api){
                 $api->post('search', 'Api\PagesController@search');
             });
 
-            $api->group(['prefix' => 'slides'], function ($api) {
-                $api->get('/', 'Api\SlidesController@index');                
-                $api->post('/', 'Api\SlidesController@store');
-                $api->get('/{uuid}', 'Api\SlidesController@show');
-                $api->put('/{uuid}', 'Api\SlidesController@update');
-                $api->patch('/{uuid}', 'Api\SlidesController@update');
-                $api->delete('/{uuid}', 'Api\SlidesController@destroy');
-
-                $api->post('/{id}/upload/image', 'Api\SlidesController@uploadImage');
-                $api->post('/{id}/upload/image/{image_id}', 'Api\SlidesController@deleteImage');
-
-                $api->post('/{id}/upload/mobile', 'Api\SlidesController@uploadMobile');
-                $api->post('/{id}/upload/mobile/{mobile_id}', 'Api\SlidesController@deleteMobile');
-            });
-
         });
 
         $api->post('/register', 'Api\AuthController@register');

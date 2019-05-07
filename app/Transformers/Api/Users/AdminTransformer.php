@@ -14,7 +14,7 @@ class AdminTransformer extends TransformerAbstract
     /**
      * @var array
      */
-    protected $defaultIncludes = ['roles', 'avatar'];
+    protected $defaultIncludes = ['roles'];
 
     /**
      * @param Admin $model
