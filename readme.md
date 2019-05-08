@@ -1,4 +1,3 @@
-## some Elegant thing
 ## based on laravel-api package
 
 
@@ -70,3 +69,4 @@ yarn serve
 yarn build
 ```
 here goes to ./public/vuestic (which comes from .env on ./vue/admin) for now you should copy ./public/vuestic/vuestic ro ./public/vuestic
+admin url : /el-admin
