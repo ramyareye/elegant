@@ -15,17 +15,16 @@ import VueClipboard from 'vue-clipboard2'
 import VueSweetalert2 from 'vue-sweetalert2'
 import VuesticPlugin from 'vuestic-theme/vuestic-plugin'
 
-
-import Vueditor from 'vueditor'
+// import Vueditor from 'vueditor'
 
 import 'vueditor/dist/style/vueditor.min.css'
 
 // your config here
-let config = {
-  fontName: [
-    {val: 'Samim'}
-  ]
-}
+// let config = {
+//   fontName: [
+//     {val: 'Samim'}
+//   ]
+// }
 
 // import './packages/MediaManager/js/manager'
 
@@ -42,7 +41,7 @@ Vue.use(YmapPlugin)
 Vue.use(VueClipboard)
 Vue.use(VuesticPlugin)
 Vue.use(VueSweetalert2)
-Vue.use(Vueditor, config)
+// Vue.use(Vueditor, config)
 
 // NOTE: workaround for VeeValidate + vuetable-2
 Vue.use(VeeValidate, { fieldsBagName: 'formFields' })
@@ -60,7 +59,7 @@ router.afterEach((to, from) => {
 
 router.beforeEach((to, from, next) => {
   if (
-    store.getters.permissions.length && 
+    store.getters.permissions.length &&
     !store.getters.permissions.includes(to.meta.per)
   ) {
     store.dispatch('addToastMessage', { text: Vue.i18n.translate('errors.403') })
