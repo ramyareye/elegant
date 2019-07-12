@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee542df97d8218d160bf920f68cd8223",
+    "content-hash": "6826d9d03802217ac4efb75c421ddb5c",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -1593,7 +1593,7 @@
             "time": "2017-06-01T20:29:30+00:00"
         },
         {
-            "name": "jeremeamia/SuperClosure",
+            "name": "jeremeamia/superclosure",
             "version": "2.4.0",
             "source": {
                 "type": "git",
